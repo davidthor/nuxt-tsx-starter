@@ -6,14 +6,48 @@ I've put together this project to help myself and others setup new web applicati
 
 ## Getting started
 
-All the regular npm commands that come with the Nuxt starter project are available for use, but I like to debug in more production-ready environments to ensure that my projects can be promoted to production more quickly. To accomplish this, I use [Docker](https://www.docker.com/) and [Architect](http://docs.architect.io/), which allows me to start my application with the following command:
+### Clone and install dependencies
+
+```sh
+git clone https://github.com/davidthor/nuxt-tsx-starter.git
+npm install
+```
+
+### Run in development
+
+```sh
+npm run dev
+```
+
+Once running, the application will be available at http://localhost:3000
+
+### Build and run for production
+
+```sh
+npm run build
+npm start
+```
+
+Once running, the application will be available at http://localhost:3000
+
+### Build and run w/ Docker
+
+```sh
+docker build . -t nuxt-tsx-starter
+docker run -p 3000:3000 nuxt-tsx-starter
+```
+
+Once running, the application will be available at http://localhost:3000
+
+### Run w/ Architect
+
+I like to debug in more production-ready environments to ensure that my projects can be promoted to production more quickly. To accomplish this, I use [Architect](http://docs.architect.io/), which allows me to start my application with the following command:
 
 ```sh
 $ architect deploy --local ./architect.yml -i app:app
-# Application now available at http://app.arc.localhost/
 ```
 
-Once I'm ready to go live, all I have to do is register my environment with Architect and run the same deploy command:
+Unlike the prior steps, this deploy generates an API gateway even for testing, and the application will be available at http://app.arc.localhost. Once I'm ready to go live, I can push and deploy my application in a similar manner to a Kubernetes or ECS cluster:
 
 ```sh
 # Push the code to the registry
