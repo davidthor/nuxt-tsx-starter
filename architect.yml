@@ -1,0 +1,36 @@
+name: davidthor/nuxt-tsx-starter
+description: A starter project showing how to make use of JSX w/ Typescript in Nuxt.js
+keywords:
+  - nuxt.js
+  - typescript
+  - jsx
+  - tsx
+
+parameters:
+  APP_NAME:
+    description: Name of the application to use in page metadata
+    default: Nuxt TSX Starter
+
+services:
+  app:
+    build:
+      context: ./
+    environment:
+      BASE_URL: ${{ environment.ingresses['davidthor/nuxt-tsx-starter'].app.url }}
+      APP_NAME: ${{ parameters.APP_NAME }}
+    interfaces:
+      main: 3000
+    debug:
+      build:
+        args:
+          DEBUG: 'true'
+      command: npm run dev
+      volumes:
+        src:
+          host_path: ./src/
+          mount_path: /app/src/
+
+interfaces:
+  app:
+    url: ${{ services.app.interfaces.main.url }}
+    description: Exposes the webapp to outside consumers
