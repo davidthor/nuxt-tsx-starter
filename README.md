@@ -26,3 +26,9 @@ $ architect environment:create --account "<my-account>" --platform "my-platform"
 # Deploy
 $ architect deploy --account "<my-account>" --environment "production" davidthor/nuxt-tsx-starter:latest
 ```
+
+## Larger projects
+
+Want to see a larger project using this same boilerplate? Check out the following:
+
+- [Architect Auth](https://github.com/architect-team/architect-auth) - A self-hosted user authentication and authorization server.
